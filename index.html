@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0d1b2a;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    #wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 100vh;
+      width: 100%;
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+      padding: 3vh 3%;
+      box-sizing: border-box;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Efek bintang di background */
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .star {
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: twinkle 3s infinite;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    
+    .bounceInDown {
+      opacity: 1 !important;
+    }
+    
+    /* STYLE UNTUK TULISAN YANG RESPONSIF */
+    #wish {
+      text-align: center;
+      margin-top: 15px;
+      z-index: 2;
+      width: 100%;
+      padding: 0 5px;
+    }
+    
+    /* Container untuk mengatur tata letak */
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .birthday-text {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+      width: 100%;
+    }
+    
+    .name-text {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 5px;
+      width: 100%;
+    }
+    
+    /* Huruf HAPPY BIRTHDAY */
+    .letter {
+      display: inline-block;
+      font-size: clamp(40px, 11vw, 80px);
+      font-weight: 900;
+      color: transparent;
+      background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcf7f, #4d96ff);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: 
+        0px 5px 15px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 107, 107, 0.7);
+      letter-spacing: 1px;
+      margin: 0 1px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: rainbowBg 4s ease infinite;
+      line-height: 1.2;
+    }
+    
+    /* Spasi antara HAPPY dan BIRTHDAY */
+    .space {
+      display: inline-block;
+      width: clamp(15px, 3vw, 30px);
+    }
+    
+    /* Huruf NINA */
+    .name-letter {
+      display: inline-block;
+      font-size: clamp(50px, 13vw, 100px);
+      font-weight: 900;
+      color: #ffd93d;
+      text-shadow: 
+        0px 5px 15px rgba(0, 0, 0, 0.5),
+        0 0 25px rgba(255, 217, 61, 0.8),
+        0 0 40px rgba(255, 217, 61, 0.6);
+      letter-spacing: 2px;
+      margin: 0 2px;
+      opacity: 0;
+      transform: scale(0.5) rotate(-10deg);
+      line-height: 1.2;
+    }
+    
+    @keyframes rainbowBg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    @keyframes bounceInLetter {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.8);
+      }
+      50% {
+        transform: translateY(-10px) scale(1.05);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    @keyframes bounceInName {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-10deg);
+      }
+      60% {
+        transform: scale(1.1) rotate(5deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+    
+    @keyframes glowPulse {
+      0%, 100% {
+        text-shadow: 
+          0px 5px 15px rgba(0, 0, 0, 0.5),
+          0 0 20px rgba(255, 217, 61, 0.7);
+      }
+      50% {
+        text-shadow: 
+          0px 5px 20px rgba(0, 0, 0, 0.6),
+          0 0 30px rgba(255, 217, 61, 1),
+          0 0 50px rgba(255, 217, 61, 0.8);
+      }
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+    
+    .swing {
+      animation-iteration-count: infinite;
+      opacity: 1 !important;
+    }
+    
+    #note {
+      font-family: 'Segoe UI', sans-serif;
+      font-size: clamp(14px, 4vw, 18px);
+      color: #fff;
+      margin: 15px 0;
+      animation: fadeIn 2s ease-in-out;
+      text-align: center;
+      padding: 0 10px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+      z-index: 2;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 10px;
+      padding: 10px 15px;
+      backdrop-filter: blur(5px);
+      max-width: 500px;
+      width: 90%;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    #present {
+      width: 85%;
+      max-width: 280px;
+      height: auto;
+      position: relative;
+      cursor: pointer;
+      opacity: 0;
+      aspect-ratio: 4/3;
+      z-index: 2;
+      margin-bottom: 15px;
+    }
+    
+    #present #box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #ff6b6b;
+      border-radius: 10px;
+      z-index: 2;
+      box-shadow: 
+        0px 13px 4px -10px rgba(0, 0, 0, 0.5), 
+        0 0 25px rgba(255, 107, 107, 0.5);
+    }
+    
+    #present #top {
+      width: 110%;
+      background: #ffffff;
+      height: 20%;
+      position: absolute;
+      top: -10%;
+      left: -5%;
+      box-shadow: 0px 30px 2px -20px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      z-index: 2;
+    }
+    
+    #present #top img {
+      position: absolute;
+      top: -5px;
+      width: 100%;
+    }
+    
+    #present #cat {
+      position: absolute;
+      top: 10px;
+      width: 60%;
+      border-radius: 50%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+      transition: all 2s;
+      z-index: 0;
+    }
+    
+    .floating-button {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 10px 16px;
+      font-size: clamp(12px, 3vw, 14px);
+      box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.3), 
+        0 0 20px rgba(255, 107, 107, 0.4);
+      cursor: pointer;
+      z-index: 999;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+    
+    .floating-button:hover {
+      background: linear-gradient(135deg, #ee5a52 0%, #d64545 100%);
+      transform: translateY(-3px);
+      box-shadow: 
+        0 6px 8px rgba(0, 0, 0, 0.4), 
+        0 0 25px rgba(255, 107, 107, 0.5);
+    }
+    
+    /* Responsif khusus untuk HP kecil */
+    @media (max-width: 360px) {
+      .letter {
+        font-size: 35px;
+        margin: 0 0.5px;
+        letter-spacing: 0.5px;
+      }
+      
+      .name-letter {
+        font-size: 45px;
+        margin: 0 1px;
+        letter-spacing: 1px;
+      }
+      
+      .space {
+        width: 10px;
+      }
+      
+      #present {
+        width: 90%;
+        max-width: 250px;
+      }
+      
+      #note {
+        padding: 8px 10px;
+        font-size: 13px;
+      }
+    }
+    
+    /* Responsif untuk HP ukuran normal */
+    @media (min-width: 361px) and (max-width: 480px) {
+      .letter {
+        font-size: 38px;
+        margin: 0 1px;
+      }
+      
+      .name-letter {
+        font-size: 48px;
+        margin: 0 1.5px;
+      }
+      
+      .space {
+        width: 12px;
+      }
+    }
+    
+    /* Responsif untuk tablet */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .letter {
+        font-size: 55px;
+        margin: 0 1.5px;
+      }
+      
+      .name-letter {
+        font-size: 65px;
+        margin: 0 2px;
+      }
+      
+      .space {
+        width: 20px;
+      }
+      
+      #present {
+        max-width: 300px;
+      }
+    }
+    
+    /* Responsif untuk desktop */
+    @media (min-width: 769px) {
+      .letter {
+        font-size: 70px;
+        margin: 0 2px;
+      }
+      
+      .name-letter {
+        font-size: 85px;
+        margin: 0 3px;
+      }
+      
+      .space {
+        width: 25px;
+      }
+      
+      #present {
+        max-width: 320px;
+      }
+    }
+    
+    /* Untuk layar sangat kecil (portrait) */
+    @media (max-height: 600px) and (max-width: 480px) {
+      #wrapper {
+        padding: 2vh 2%;
+      }
+      
+      .letter {
+        font-size: 30px;
+      }
+      
+      .name-letter {
+        font-size: 40px;
+      }
+      
+      #present {
+        max-width: 220px;
+        margin-bottom: 10px;
+      }
+      
+      #note {
+        margin: 10px 0;
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  
+  <div id="wrapper">
+    <div id="wish">
+      <div class="text-container">
+        <!-- Baris 1: HAPPY BIRTHDAY -->
+        <div class="birthday-text">
+          <span class="letter">H</span>
+          <span class="letter">A</span>
+          <span class="letter">P</span>
+          <span class="letter">P</span>
+          <span class="letter">Y</span>
+          <span class="space"></span>
+          <span class="letter">B</span>
+          <span class="letter">I</span>
+          <span class="letter">R</span>
+          <span class="letter">T</span>
+          <span class="letter">H</span>
+          <span class="letter">D</span>
+          <span class="letter">A</span>
+          <span class="letter">Y</span>
+        </div>
+        
+        <!-- Baris 2: NINA -->
+        <div class="name-text">
+          <span class="name-letter">N</span>
+          <span class="name-letter">I</span>
+          <span class="name-letter">N</span>
+          <span class="name-letter">A</span>
+        </div>
+      </div>
+    </div>
+    
+    <p id="note">🎁 Buka kadonya nina sensei 🎁</p>
+    
+    <div id="present">
+      <img src="https://media.tenor.com/images/80b3edbf059ce9f4c86282d6f7774b16/tenor.gif" id="cat" />
+      <div id="box"></div>
+      <div id="top">
+        <img src="http://pngimg.com/uploads/ribbon/ribbon_PNG1547.png" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Tombol link -->
+  <button class="floating-button" onclick="window.location.href='ucapan.html'">Lanjut tekan ini sensei</button>
+  
+  <!-- Audio element (otomatis play, tanpa kontrol) -->
+  <audio id="bgMusic" loop autoplay>
+    <source src="musik1.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen audio.
+  </audio>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Buat efek bintang
+      createStars();
+      
+      // Mulai musik secara otomatis
+      const audio = document.getElementById('bgMusic');
+      
+      // Coba putar musik
+      audio.play().catch(error => {
+        console.log("Autoplay mungkin dicegah oleh browser");
+      });
+      
+      // Animasi present
+      $("#present").addClass("animated bounceInDown");
+      
+      // Animasi huruf HAPPY BIRTHDAY (baris 1)
+      setTimeout(function() {
+        $(".letter").each(function(index) {
+          var $letter = $(this);
+          setTimeout(function() {
+            $letter.css({
+              opacity: 1,
+              animation: "bounceInLetter 0.6s ease forwards, rainbowBg 4s ease infinite"
+            });
+          }, index * 80);
+        });
+      }, 500);
+      
+      // Animasi huruf NINA (baris 2) setelah baris 1 selesai
+      setTimeout(function() {
+        $(".name-letter").each(function(index) {
+          var $nameLetter = $(this);
+          setTimeout(function() {
+            $nameLetter.css({
+              opacity: 1,
+              animation: "bounceInName 0.8s ease forwards"
+            });
+            
+            // Setelah animasi masuk, tambah animasi glow dan float
+            setTimeout(function() {
+              $nameLetter.css({
+                animation: "glowPulse 2s infinite, float 3s infinite"
+              });
+            }, 800);
+          }, index * 120);
+        });
+      }, 1800);
+      
+      // Hover effect untuk present
+      $("#present").hover(function () {
+        $("#present #top").addClass("animated bounce");
+      }, function () {
+        $("#present #top").removeClass("animated bounce");
+      });
+      
+      // Klik pada present
+      $("#present").on("click", function () {
+        $("#present #top").removeClass("animated bounce");
+        $("#present #top").addClass("animated bounceOutUp");
+        $(this).unbind("click");
+        $(this).unbind("mouseleave");
+        
+        setTimeout(function () {
+          $("#present #cat").css("top", "-160px");
+        }, 1000);
+        
+        // Efek tambahan pada huruf setelah kado dibuka
+        setTimeout(function() {
+          $(".letter").css("animation", "rainbowBg 3s ease infinite, float 2.5s infinite");
+          $(".name-letter").css({
+            "animation": "glowPulse 1.2s infinite, float 2s infinite",
+            "color": "#ff6b6b"
+          });
+        }, 2000);
+      });
+      
+      // Fungsi untuk memastikan tulisan tetap dalam 2 baris di HP
+      function adjustTextForMobile() {
+        const isMobile = window.innerWidth <= 768;
+        const birthdayText = document.querySelector('.birthday-text');
+        const nameText = document.querySelector('.name-text');
+        
+        if (isMobile) {
+          // Pastikan HAPPY BIRTHDAY tidak turun ke baris ketiga
+          const letters = document.querySelectorAll('.letter');
+          letters.forEach(letter => {
+            letter.style.display = 'inline-block';
+            letter.style.whiteSpace = 'nowrap';
+          });
+          
+          // Pastikan NINA tetap di baris kedua
+          const nameLetters = document.querySelectorAll('.name-letter');
+          nameLetters.forEach(letter => {
+            letter.style.display = 'inline-block';
+            letter.style.whiteSpace = 'nowrap';
+          });
+        }
+      }
+      
+      // Panggil fungsi saat load dan resize
+      adjustTextForMobile();
+      window.addEventListener('resize', adjustTextForMobile);
+    });
+    
+    // Fungsi untuk membuat efek bintang
+    function createStars() {
+      const starsContainer = document.getElementById('stars');
+      const starCount = window.innerWidth < 768 ? 50 : 80;
+      
+      for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        
+        // Ukuran acak (lebih kecil untuk mobile)
+        const size = window.innerWidth < 768 ? Math.random() * 1.5 + 0.5 : Math.random() * 2 + 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        
+        // Posisi acak
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.top = `${Math.random() * 100}%`;
+        
+        // Animasi delay acak
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        
+        starsContainer.appendChild(star);
+      }
+    }
+    
+    // Handle resize untuk responsif
+    window.addEventListener('resize', function() {
+      document.getElementById('stars').innerHTML = '';
+      createStars();
+    });
+  </script>
+</body>
+</html>

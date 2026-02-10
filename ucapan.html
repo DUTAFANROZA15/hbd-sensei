@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Birthday Card</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <!-- Audio element (otomatis play, tanpa kontrol) -->
+  <audio id="bgMusic2" loop autoplay>
+    <source src="musik2.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung elemen audio.
+  </audio>
+
+  <!-- Tombol kembali -->
+  <button class="back-button" onclick="window.location.href='index.html'">Kembali</button>
+
+  <div id="wrapper">
+    <div class="envelope open">
+      <div class="flap front"></div>
+      <div class="flap top"></div>
+      <div class="letter" id="letter">
+        <div class="center-letter animate-reveal animate-first">
+          <h1>Happy Birthday Nina!</h1><br>
+          <p style="margin: 0 10px; line-height: 160%;">
+           Selamat ulang tahun nina sensei 🎉🎂🥳. Semoga di umur ke-20 ini dapat menjadi pribadi yang lebih baik , semoga apa yang diinginkan dapat tercapai, semoga diberi kesehatan selalu dan semoga dapat bertahan hidup dengan gebrakan semester 4 aminn wkwk.<br><br>
+
+Semangat kuliahnya dan semoga kuliahnya lancar. Jangan terlalu stress mikirin tugas, makan yang banyak biar gemuk walaupun udah gemuk dikit sih hahaha.<br><br>
+
+Sekali lagi selamat ulang tahun ke-20 🎊🎁😊🎈
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      setTimeout(function() {
+        $('.envelope').addClass('open');
+      }, 1000);
+      
+      // Mulai musik secara otomatis
+      const audio2 = document.getElementById('bgMusic2');
+      
+      // Coba putar musik
+      audio2.play().catch(error => {
+        console.log("Autoplay mungkin dicegah oleh browser");
+      });
+    });
+  </script>
+</body>
+</html>
